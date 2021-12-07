@@ -1,2 +1,2 @@
-# spring-Interceptor
-学习spring的拦截器
+# springMVC-Interceptor
+学习springMVC的拦截器
