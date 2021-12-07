@@ -42,22 +42,61 @@ public class MyHandlerInterceptor1 implements HandlerInterceptor {
 <mvc:interceptors>
     <mvc:interceptor>
     	<mvc:mapping path="/**"/>
-    	<bean class="com.itheima.interceptor.MyHandlerInterceptor1"/>
+    	<bean class="com.example.interceptor.MyHandlerInterceptor1"/>
     </mvc:interceptor>
 </mvc:interceptors>
 ```
 
-③ 测试拦截器的拦截效果（编写目标方法）
+③ 测试拦截器的拦截效果
+
+* 编写目标方法
 
 ```java
-@RequestMapping("/quick23")
-@ResponseBody
-public ModelAndView quickMethod23() throws IOException, ParseException {
-    System.out.println("目标方法执行....");
+@RequestMapping("/target")
+public ModelAndView show(){
+    System.out.println("目标资源执行......");
     ModelAndView modelAndView = new ModelAndView();
     modelAndView.addObject("name","itcast");
     modelAndView.setViewName("index");
     return modelAndView;
 }
 ```
+
+* 访问网址
+
+  ```apl
+  http://localhost:8080/Spring_Interceptor_war_exploded/target?param=yes
+  ```
+
+  控制台打印结果
+
+  ![image-20211207102125951](image-20211207102125951.png)
+
+#### 4、 多拦截器操作
+
+同上，在编写一个MyHandlerInterceptor2操作，测试执行顺序
+
+![image-20211207102213314](image-20211207102213314.png)
+
+#### 5、 拦截器方法说明
+
+![image-20211207102254306](image-20211207102254306.png)
+
+#### 6、知识要点
+
+自定义拦截器步骤 
+
+① 创建拦截器类实现HandlerInterceptor接口
+
+ ② 配置拦截器 
+
+③ 测试拦截器的拦截效果
+
+#### 7、 案例-用户登录权限控制
+
+需求：用户没有登录的情况下，不能对后台菜单进行访问操作，点击菜单跳转到登录页面，只有用户登录 成功后才能进行后台功能的操作
+
+项目是spring-practice
+
+![image-20211207102858935](image-20211207102858935.png)
 
